@@ -1,38 +1,25 @@
+from collections import Counter
+
+
 PUZZLE_INPUT = '284639-748759'
 
 
 def is_valid_password(password):
-    digits = [int(x) for x in str(password)]
-    adjacent_found = False
-    last_unique_digit_seen = None
-    disqualified = False
-    found_match = True
-    for i in range(len(digits)):
+    password_string = str(password)
+    digits = [int(x) for x in password_string]
+    if len(digits) != 6:
+        return False
+    for i in range(len(digits)-1):
         current_digit = digits[i]
-        if last_unique_digit_seen is None:
-            last_unique_digit_seen = current_digit
-            continue
-
-        if current_digit == last_unique_digit_seen:
-            if disqualified:
-                continue
-
-            if adjacent_found:
-                disqualified = True
-            else:
-                adjacent_found = True
-        elif current_digit < last_unique_digit_seen:
+        next_digit = digits[i+1]
+        if current_digit > next_digit:
             return False
-        else:  # current_digit > last_unique_digit_seen
-            if adjacent_found:
-                found_match = True
 
-            last_unique_digit_seen = current_digit
-            adjacent_found = False
-            if disqualified:
-                disqualified = False
-
-    return found_match or not disqualified
+    counter = Counter(password_string)
+    for digit, count in counter.items():
+        if count == 2 and digit+digit in password_string:
+            return True
+    return False
 
 
 def print_is_valid_password(password):
