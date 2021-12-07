@@ -2,7 +2,7 @@ with open('input.txt') as f:
     crab_positions = [int (i) for line in f for i in line.strip().split(',')]
 
 least_fuel_cost = None
-for pos in range(len(crab_positions)):
+for pos in crab_positions:
     current_fuel_cost = 0
     for crab in crab_positions:
         current_fuel_cost += abs(crab - pos) 

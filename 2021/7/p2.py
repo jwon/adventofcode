@@ -1,8 +1,8 @@
 with open('input.txt') as f:
-    crab_positions = [int (i) for line in f for i in line.strip().split(',')]
+    crab_positions = sorted([int (i) for line in f for i in line.strip().split(',')])
 
 least_fuel_cost = None
-for pos in range(len(crab_positions)):
+for pos in range(crab_positions[0], crab_positions[-1]):
     current_fuel_cost = 0
     for crab in crab_positions:
         current_fuel_cost += sum(i+1 for i in range(abs(crab - pos)))
