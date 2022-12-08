@@ -9,7 +9,7 @@ def calc_viewing_distance(height, trees):
     for i in trees:
         if i < height:
             viewing_distance += 1
-        elif i >= height:
+        else:
             # print(f'height: {height} trees: {trees} viewing_distance: {viewing_distance + 1}')
             return viewing_distance + 1
     # print(f'height: {height} trees: {trees} viewing_distance: {viewing_distance}')
