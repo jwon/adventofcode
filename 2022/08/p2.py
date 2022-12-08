@@ -7,11 +7,9 @@ with open('input.txt', 'r') as f:
 def calc_viewing_distance(height, trees):
     viewing_distance = 0
     for i in trees:
-        if i < height:
-            viewing_distance += 1
-        else:
-            # print(f'height: {height} trees: {trees} viewing_distance: {viewing_distance + 1}')
-            return viewing_distance + 1
+        viewing_distance += 1
+        if i >= height:
+            break
     # print(f'height: {height} trees: {trees} viewing_distance: {viewing_distance}')
     return viewing_distance
 
